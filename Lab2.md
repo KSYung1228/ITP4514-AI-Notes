@@ -154,3 +154,23 @@ newobjs = objs.drop('b')
  - It has both a row and column index
  - There are numerous ways to construct a DataFrame.
  - One of the most common is from a dict of equal-length lists or NumPy arrays
+```py
+import pandas as pd
+data = {'state':['Ohio','Ohio','Ohio','Nevada','Nevada'],
+        'year':[2017,2018,2019,2018,2019],
+        'pop':[1.5,1.7,3.6,2.4,2.9]}
+frame = pd.DataFrame(data)
+print(frame)
+print()
+
+print(len(frame.index)) # length of the Data Frame
+print()
+
+print(frame.columns) # get column names
+print()
+
+print(frame.state) # get column "state"
+print()
+
+print(frame.loc[2]) # get the third row
+```
