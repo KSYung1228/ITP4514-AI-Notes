@@ -174,3 +174,34 @@ print()
 
 print(frame.loc[2]) # get the third row
 ```
+ - Update Frame
+```py
+'''
+Copy from frame 1 and reset index
+'''
+data2 = {'state':[],'year':[],'pop':0.0}
+frame2 = pd.DataFrame(data2)
+frame2.loc[2] = frame.loc[1]
+frame2.loc[0] = frame.loc[3]
+print(frame2)
+
+frame2.reser_index(drop = True, inplace = True)
+print(frame2)
+
+'''
+update data
+'''
+frame.at[1,'year'] = 2020
+print(frame)
+print()
+'''
+all years to 2021
+'''
+frame.year = 2021
+print(frame)
+```
+ - Dataframe - Drop
+```py
+newframe = frame.drop(1)
+print(newframe)
+```

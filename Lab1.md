@@ -16,10 +16,10 @@
  - AI: focuses on what to do -> Declarative programming.
  - Traditional Computing: focuses on how to do -> Use Imperatice programming.
 
-![Paradigms](/Lab1/Picture1.png "")
+![](/Lab1/Picture1.png "")
 
 ## Common Domains of AI
-![Common Domains](/Lab1/Picture2.png)
+![](/Lab1/Picture2.png)
 
 ## Applications of Artificial Intelligence
  - **Gaming** - AI plays crucial role in strategic games such as chess, poker, tic-tac-toe, etc., where machine can think of large number of possible poistions baed on heuristic knowledge.
