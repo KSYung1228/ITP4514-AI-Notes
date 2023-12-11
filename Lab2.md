@@ -149,3 +149,8 @@ print(objs)
 newobjs = objs.drop('b')
 ```
 ### DataFrame
+ - A DataFrame represents a tabular, speadsheet-like data strcture.
+ - It contains an ordered collection of columns, each of which can be a different value type(numeric, string, bolean, etc.).
+ - It has both a row and column index
+ - There are numerous ways to construct a DataFrame.
+ - One of the most common is from a dict of equal-length lists or NumPy arrays
