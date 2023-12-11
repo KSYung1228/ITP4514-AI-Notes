@@ -16,7 +16,7 @@
  - AI: focuses on what to do -> Declarative programming.
  - Traditional Computing: focuses on how to do -> Use Imperatice programming.
 
-![Paradigms](Lab1\Picture1.png "")
+![](Lab1\Picture1.png "")
 
 ## Common Domains of AI
 ![Common Domains](/Lab1/Picture2.png)
