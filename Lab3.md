@@ -51,3 +51,30 @@
    - Known as heuristic search
    - uses domain-specific knowledge or information(usuallt heuristic functions) to guide the search
      - E.g., A* search, greedy search
+
+## Breadth-first Search
+**Problem:**
+ - Given a source vertex s in a graph G = (V,E)
+ - Visit all vertices closer to s before any father vertices
+ - Idea:
+   - Explore the vertices of a graph according to "layers"
+   - Layer 0 consists only of the starting vertex s
+   - Layer 1 contains the neighbor vertices of s
+   - Layer2 comprises the neighbors of layer-1
+   - vertices that do not already belong to layer 0 or 1
+   - Layer 3, so on and so forth
+![](/Lab3/Picture4.jpg)
+
+**Algorithm**
+ - Mark all nodes as not visited
+ - Mark startNode visited
+ - Add startNode to the queue
+ - While(queue is not empty):
+   - Remove currentNode from queue
+   - for each nextNode connected to currentNode:
+     - If nextNode is not visited
+     - Mark nextNode visited
+     - If nextNode is goalNode, terminate with success
+     - Add nextNode to queue
+ - After all nodes in queue checked, terminate with failure
+ - If terminate with success, return the path found
