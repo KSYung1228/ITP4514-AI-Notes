@@ -78,3 +78,33 @@
      - Add nextNode to queue
  - After all nodes in queue checked, terminate with failure
  - If terminate with success, return the path found
+
+**Successful BFS**
+![](/Lab3/Picture5.png)
+ - Example:Search from B to G
+   - Visited nodes {B}, queue {B}
+ - Removed B from queue, insert all connected nodes
+   - Visited nodes {BC}, queue{C}
+ - Remove C from queue, insert all connected nodes
+   - Visites {BCADE}, queue {ADE}
+ - Remove A from queue, insert node H (not C, as it had meen visited)
+   - Visited {BCADEH}, queue {DEH}
+ - Remove D from queue, insert F
+   - Visited {BCADEHF}, queue {EHF}
+ - Remove E, add nothing(no othwe nodes to go)
+   - Visited nodes {BCADEHF}, queue {HF}
+ - Remove H, add G and the goal is found
+   - Visited {BCADEHFG}, queue {FG}
+ - **PATH: B > C > D > F > G**
+
+**Unsuccessful BFS**
+![](/Lab3/Picture6.png)
+ - Search from B to J
+ - We start from the last interation in the last example
+   - Visited nodes {BCADEHFG}, queue {FG}
+ - Remove F from queue, no additional node added
+   - Visited nodes {BCADEHFG}, queue {G}
+ - Remoe G from queue, no additional node added
+   - Visited nodes {BCADEHFG}, queue {}
+ - The queue is now empty
+ - Therefore, no path exist from B to J
