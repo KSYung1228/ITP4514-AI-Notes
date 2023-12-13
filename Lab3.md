@@ -311,6 +311,6 @@ for el in result:
    - Both best-first search and A* search use an exploratuib strategy that selects the most promising node based on a heuristic ecaluation
    - Both algorithms maintain a priority queue to store the nodes yet to be expanded.
  - Differences:A* search guarantees finding an optimal solution if the heursir function is afmissible. Best-first search does not guarantee optimality unless additiona conditions are met.
- - Best-first search only considers the heuristic value of each node when selecting the next node to expand;A* Search takes ito account both the heurustic value and the cost of reaching each node.
+ - Best-first search only considers the heuristic value of each node when selecting the next node to expand;A* Search takes into account both the heurustic value and the cost of reaching each node.
  - A* search is complete, meaning it will find a solution if one exists. Best-first search does not gunarantee completeness.
 ![](/Lab3/Picture18.png)
