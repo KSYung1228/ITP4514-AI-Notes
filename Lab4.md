@@ -37,3 +37,17 @@
  - Logic programming is a programming paradigm that is based on formal logic and uses logical rules and inference to solve problems
  - In logic programming, progra,s are composed of facts and rules expressed in a logic-based language
  - Th most common logic programming language is  ***Prolog***, which stands for "Programming in Logic" In Prolog, you define a knowledge base consisting of facts and rules, and you can query this knowledge base to obtain solutions to problems.
+
+**Logic Programming: An Overview**
+ - Logic Programming uses ***facts*** and ***rules*** for solving the problem
+ - That is why they are called the ***building blocks*** of logic programming
+ - A ***goal*** needs to be specified for every program in logic programming
+
+**Facts**
+ - basically are true statements ***about the program and data***
+ - For example, Beijing is the capital of china
+
+**Rules**
+ - Rules are the constraints which allow us to make conclusions about the problem domain.
+ - Rules basically written as logical clauses to express various facts
+ - E.g., If we building any game then all the rules must be defined
