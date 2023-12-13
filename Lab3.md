@@ -239,4 +239,78 @@ Hence the final sulution path will be: S > B > F > G
 
 **Algorithm**
  - Make use of priority queue
- - Starting from startinf node, add all adjacent nodes to the priority queue, calculate the value of the "heuristic function" (e.g., distance from goal + cost) 
+ - Starting from startinf node, add all adjacent nodes to the priority queue, calculate the value of the "heuristic function" (e.g., distance from goal + cost) remove one with least value for the heuritic function
+ - repeat dor the node just removed
+ - When the goal is reached, continue(as there may be alternative paths with lower costs)
+ - Stop when the goal node is removed
+
+![](/Lab3/Picture16.png)
+
+![](/Lab3/Picture17.png)
+
+ - In calculation(from S > G)
+  - f(S, A) = 3 + 10.2 = 13.2
+  - f(S, D) = 4.8 + 9 = 13.8
+  - f(S, B) = 3 + 4 + 6 = 13
+  - f(S, D) = 3 + 5 + 9 = 17
+  - f(S, C) = 3 + 4 + 4 + 3 = 14
+  - f(S, E) = 3 + 4 + 5 + 7 = 19
+  - f(S, A) = 4 + 5 + 10 = 19
+  - f(S, E) = 4 + 2 + 7 = 13
+  - f(S, B) = 4 + 2 + 5 + 6 = 17
+  - f(S, F) = 4 + 2 + 4 + 4 = 14
+  - f(S, G) = 4 + 2 + 4 + 4 + 0 = 14
+  - The total cost from the start node S to the goal node G is 14
+
+**Explane A\* Search**
+```py
+#define the grid
+grid = [[0,1,0,0,0,0],
+        [0,1,0,0,0,0],
+        [0,1,0,0,0,0]
+        [0,1,0,0,0,0],
+        [0,0,0,0,1,0]]
+'''
+5*6 maze
+1: cannot go through
+0: can go through
+'''
+#define the heuristics and parameters
+init = [0,0]
+goal = [len(grid)-1, len(grid[0])-1]
+cost = 1 #Same as Best First Search execpt: cost = 0 > cost = 1
+delta = [[-1,0], # go up
+         [0,-1], # go left
+         [1,0],  # go down
+         [0,1]]  # go right
+
+delta_name = ['^','<','v','>']
+#define the algorithm
+if x == goal[0] and y == goal[1]:
+    found = True
+else:
+    for i in tange(len(delta)):
+        x2 = x + delta[i][0]
+        y2 = y + delta[i][1]
+        if x2 >= 0 and x2 < len(grid) and y2 >=0 and y2 < len(grid[0]):
+            if closed[x2][y2] == 0 and grid[x2][y2] == 0:
+                g2 = g + cost # same as Best First search expert: g2 = g
+                f = g2 + heuristic[x2][y2]
+                open.append([f, g2, x2, y2])
+                closed[x2][y2] = 1
+return expand
+
+
+result = search(grid, init, goal, cost, heuristic)
+
+for el in result:
+    print(el)
+```
+##Comparisons on Best-first search and A-Star Search
+ - Similarities:
+   - Both best-first search and A* search use an exploratuib strategy that selects the most promising node based on a heuristic ecaluation
+   - Both algorithms maintain a priority queue to store the nodes yet to be expanded.
+ - Differences:A* search guarantees finding an optimal solution if the heursir function is afmissible. Best-first search does not guarantee optimality unless additiona conditions are met.
+ - Best-first search only considers the heuristic value of each node when selecting the next node to expand;A* Search takes ito account both the heurustic value and the cost of reaching each node.
+ - A* search is complete, meaning it will find a solution if one exists. Best-first search does not gunarantee completeness.
+![](/Lab3/Picture18.png)
