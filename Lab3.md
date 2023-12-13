@@ -8,7 +8,7 @@
    - V = {1,2,3,4}
    - E = {(1,2),(1,3),(2,4),(4,1)}
 
-![](/Lab3/Picture1.png)
+![](/Lab3/Picture1.png){width=300}
 
 ### Undirect graph
  - The edges do not have a specific direction
@@ -51,7 +51,7 @@
    - Known as heuristic search
    - uses domain-specific knowledge or information(usuallt heuristic functions) to guide the search
      - E.g., A* search, greedy search
-
+---
 ## Breadth-first Search
 **Problem:**
  - Given a source vertex s in a graph G = (V,E)
@@ -108,3 +108,135 @@
    - Visited nodes {BCADEHFG}, queue {}
  - The queue is now empty
  - Therefore, no path exist from B to J
+
+## Advantages and Disadvantages of BFS
+ - Advantages
+   - Simple algorithm
+ - Disadvantages
+   - Not efficient
+   - requires a lot of memory space
+   - Not always getting the best path
+---
+## Dijkstra's algorithm and Uniform cost Search
+ - finds the shortest path by picking the unvisited node with the lowest distance/ cost from start, calculates the distance through it to each unvisited neighbour, and updates the neighbour's distance if smaller
+
+**Algorithm**
+![](/Lab3/Picture7.png)
+ - Suppose we have the following undirected graph. the initial node is A; the goal node is E
+ - Create table to see the shortest distance for each traversal.
+ - Traverse from node A, the path cost from node A > A = 0; alos assume the initial path cost to all other nodes is a very large value, say, infinity
+   - Source vertex: A
+![](/Lab3/Picture8.png)
+ - From graph, A can traverse to B, C, D.
+ - update the table with the shorest distance.
+   - Mark A as visited
+   - Souce Vertex: A
+   - Run the algorithm for finding the shortest distance:
+     - IF:
+     $$
+     d[i] + c(i, j) < d(j)
+     $$
+     - THEN:
+     $$
+     d(j) = d(i) + c(i, j)
+     $$
+![](/Lab3/Picture9.png)
+ - Since A > C is 2, which is the shortest distance when compared with B and D.
+ - Traverse from A to C
+ - Mark C is visited
+ - Next step, C can traverse to B, D
+   - Run the algorithm for finding the shortest distance:
+     - IF:
+     $$
+     d[i] + c(i, j) < d(j)
+     $$
+     - THEN:
+     $$
+     d(j) = d(i) + c(i, j)
+     $$
+![](/Lab3/Picture10.png)
+ - Traverse from C to D
+ - Update te table with the shortest path cost
+![](/Lab3/Picture11.png)
+ - Since the path cost A > C > B would be cheapter than A > C > D > B
+   - Backward to C
+   - Traverse to B
+![](/Lab3/Picture12.png)
+ - Update the path cost from B > E
+ - Finally shortest path found
+ - A > C > B > E, with path cost = 6
+![](/Lab3/Picture13.png)
+
+## Uniform Cost Search
+**Uniform cost search algorithm**
+ - Make use of priority queue
+ - Starting from starting node, add all adjacent nodes to the priority queue, remove one with least cost
+ - repeat dor the node with the least cost
+ - When the goal is reached, continue (as there may be alternative paths with lower costs)
+ - stop when the goal node is removed
+ - Obtain the optimal path
+
+## Advantages and Disadvantages of Uniform Cost Search
+ - Advantages
+   - Optimal path obtained(with minimum cost)
+ - Disadvantages
+   - Not efficient, often need more steps to find a path
+   - May stick to an infinity loop if there is a path with infinite zero cost sequence
+---
+## Best-first Search
+ - **Greedy algorithm**
+   - Expanding the most promising node chosen according to a specified rule
+ - In Best first search, node selection on every step is based on minimizing a heuristic function h(n)
+ - The heuristic function h(n) is a cost estimate. E.g., it may represent the physical distance/ time/ expenditure required, or the energy consumed when a monster in a game move feom the node to the goal
+ - Uses distance to goal not distance from start
+ - Best first search uses the estimated distance to goal instead of the distance from the starting point in searching
+ - Obstacles can cause a best first search to double vack, It does not always return the best path
+ - In games, it is suitable for hand-held game with limited processing power
+
+**Algorithm**
+![](/Lab3/Picture14.png)
+ - Find a good path from S to G
+ - Given the follow heuristic cost information:
+![](/Lab3/Picture15.png)
+ - Make use of priority queue
+ - Starting from starting node, add all adjacent nodes to the priority queue, calculate the distance from goal, remoce one with least value for the node just removed
+ - Stop when the goal is reached
+ - Obtain the path
+
+```markdown
+# Steps
+Expand the nodes of S and put in the CLOSED list
+
+Initialization: Open {A, b}, Closed {s}
+
+Iteration 1: Open {A}, Closed {S, B}
+
+Iteration 2: Open {E, F, A} Close {S, B}
+           : Open {E, A} Close {S, B, F}
+
+Iteration 3: Open {I, G, E, A}, Close {S, B, F}
+           : Open {I, E, A}, Close {S, B, F, G}
+
+Hence the final sulution path will be: S > B > F > G
+```
+
+## Advantages and Disadvantages of Best First Search
+ - Advantages
+   - Very efficient, fast exploration of node to reach the goal
+   - Having low memory requirements
+ - Disadvantages
+   - Does not guarantee the best path, but often return a best path under certain conditions, e.g., in games with convex obstacles only
+   - Likely to have inaccrate results
+---
+## A* Search
+ - Combination of Dijkstra's algorithm and best first search
+ - The first path is the shortest path
+ - A* uses distance heuristic to push search towards goal
+ - Total cost from start to goal = actual shortest distance from start to current + estimated(heuristic) distance from current node to goal
+ - In short, f(start, goal) = g(start, curent) + h(current, goal)
+ - h(current, goal) = cost of the cheapest path from current node to the goal node
+ - g(start, current) = cost of the cheapest path from the starting node to current node
+
+**Algorithm**
+ - Make use of priority queue
+ - Starting from startinf node, add all adjacent nodes to the priority queue, calculate the value of the "heuristic function" (e.g., distance from goal + cost) 
