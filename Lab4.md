@@ -54,9 +54,9 @@
  - Important to solve ant problem in Logic Programming. Rules are basically
  - logical conclusion which can express the facts, Following is the syntax of rule:
  
- $$
- A:  B_1,B_2,...,B_n
- $$
+$$
+A:  B_1,B_2,...,B_n
+$$
  
  - Here, A is the head and B<sub>1</sub>,B<sub>2</sub>,...B<sub>n</sub> is the body
  - E.g.,
@@ -189,10 +189,4 @@ run(0, what, studies('Charlie',what))
 
 students = var()
 run(0, students, profrssor('Kirke', students))
-
-
-
-
-
-
 ```         
