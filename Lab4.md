@@ -51,3 +51,64 @@
  - Rules are the constraints which allow us to make conclusions about the problem domain.
  - Rules basically written as logical clauses to express various facts
  - E.g., If we building any game then all the rules must be defined
+ - Important to solve ant problem in Logic Programming. Rules are basically
+ - logical conclusion which can express the facts, Following is the syntax of rule:
+ $$
+ A:  B_1,B_2,...,B_n
+ $$
+ - Here, A is the head and B<sub>1</sub>,B<sub>2</sub>,...B<sub>n</sub> is the body
+ - E.g.,
+$$
+ancenstor(X,Y): father(X,Y)
+$$
+$$
+ancenstor(X,Z): father(X,Y), ancestor(Y,Z)
+$$
+**Logic Program in Prolog:**
+```py
+#facts(database)
+parent(joe, jane)
+parent(harry, carl)
+parent(meg, jane)
+parent(jane, anne)
+parent(carl, ralph)
+parent(hazel, harry)
+
+#Rule
+grandparent(X, Z):
+    parent(X,Y),parent(Y,Z)
+
+#Queries
+? parent(meg, jane)
+#True
+
+? parent(carl,joe)
+#False
+
+? granfparent(A, ralph)
+A = harry
+#False
+```
+##Loic Program Engine(LPE)
+ - Unification
+ - Backtracking
+
+**Unification**
+ - The process of finding **substitutions** for variables in logical expressions
+   - such that the expression become equal and compatible
+ - For example, a LPE can unify the terms cat(A), and cat(mary) by binding variable A to atom mary that means we are giving the value mary to variable A
+ - A LPE can unify person(Kevin, Dane) and person(L, S) by binding L and S to stom Kevin and Dane, repectively
+ - Sometimes it is called binding the **variables to values**
+
+**Backtracking**
+ - In the process of backtracking, a LPE will go back to the previous goal, and after that, it will try to find another wey to satisfy the goal
+ - If the current colution fails, backtracking allows for exploring alternative solutions
+ - E.g., 
+   - 1\. The system starts bt attempting to satisfy the first goal or query
+   - 2\. If the goal is satisfied, it continues to the next goal or query
+   - 3\. If the goal fails, the system backtracks to the previous choice point and explores alternative choices
+   - The system then continuesthe seach from the alternatice choice point, either trying adifferent posibility or exploring a different branch
+   - If all possibilities and branches have been exhausted, and no more solutions are found, the search terminates
+ - When it finds that D is not the destination, it backtracks to B, then go to E, and backtracks again to B and then A, ...
+ - When it finds G(the goal), it stops
+![](/Lab4/Picture1.png)
