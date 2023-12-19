@@ -143,3 +143,30 @@ Example:
   $$
   where $A_1,A_2,A_3...,A_n$ is a set of ntaally exclusive and exhaustice events
   ![](/Lab5/Picture1.png)
+
+## Applying Bayes' Rule
+ - Bayes' Rule can be written in terms of cause and effect:
+$$
+P(cause|effect) = \frac{P(effect|cause)*P(cause)}{P(effect)}
+$$
+ - For example, frm a standard deck of playing cards, a single card is drawn
+ - the probability that the card is king is 4/52, then calculate posterior probability $P(king|face)$, which means thedrawn face card s a king card
+   - Solution:
+     - $P(king|face) = \frac{P(face|king)*P(king)}{P(face)}$
+     - P(king): probability that the card is king = 4/52 = 1/13
+     - P(face): probability that a card is a face card = 3/13
+     - P(face|king): probability of face card when we assume it is a king = 1
+     - Putting all values in Equation, we will get :
+       - $P(king|face) = \frac{1*\frac{1}{13}}{\frac{3}{13}} = \frac{1}{3}$
+     - It is a probability that a face card is a king card
+## Use Cases of Bayes' Rule
+ - Bayes' theorem allows scientists to combine a priori beliefs about the probability of an event(or an environmental condition, or another metric) with emprical(that is, observation-based) evidence, resulting in a new and more robst posterioe probability distribtion
+ - there are plenty of applications of the Bayes' Rule in the real world
+ 1. Valuating depression tests performance;
+ 2. Predicting water quality conditions;
+ 3. Assisting in COVID tests;
+ 4. Weather forecasting;
+ 5. Calculating the oving steps od robots;
+ 6. Solving the Monty Hall problem
+
+## Probability Programming in Pyro
