@@ -170,3 +170,62 @@ $$
  6. Solving the Monty Hall problem
 
 ## Probability Programming in Pyro
+**Introduction**
+ - Probabilistic programming(PP) is defined by wiki as a programming paradigm in which probabilistic models are specifird and inference for these models is performed automatically
+ - It can be used to create systems that hel make decisions in the face ofuncertainty
+ - One view of probabilistic programming is that it is about automating Bayesian inference
+ - Probabilistic programming languages(PPLs) are a tool designed specifically for doing inference
+ - Pyro is a universal probabilistic programming language written in Python and supported by Pytorch on the backend
+ - Pyro enables flexible and expressive deep probabilistic modeling, unifting the best of modern deep learning and Bayesian modeling
+ - Pyro was designed with these key principles:
+   - Universal
+   - Scalable
+   - Minimal
+   - Flexible
+ - PPls are just ordinary programming languages, equipped with tools that make satistical modelling easier forthe user, reducing the need for hand-designing programs
+ - The main components of a PPL are:
+    1. Sampling
+    2. Conditioning
+    3. Inference
+## Stochastic Functions
+ - The basic unit of probabilistic programs is the stochastic function
+ - Primitive stochastic functions, or distributions, are an important class of stochastic functions for which we can explicitly compute the probability of the outputs given the inputs
+ - For example, we draw a sample x from the unit normal distribution N(0,1) as follows
+
+```py
+import trch
+import pyro
+pyro.set_rng_seed(101)
+
+loc = 0.
+scale  1.
+normal = torch.distributions.Normal(loc, scale)
+x = normal.resample()
+print("sample", x)
+print("log prob", normal.log_prob(x))
+```
+ - The basic unit of probabilistic programs is the stochastic function
+ - Primitive stochastic functions, or distributions, are an important class of stochastic functions for which we can explicitly compute the probability of the outputs given the inputs
+ - For exp, we dwar a sample x from the unit normal distribution N(0, 1) as follows
+
+```py
+import torcj
+import pro
+pyro.set_rng_seed(101)
+loc = 0
+scale  1
+normal = torch.distributions,Normal(loc, scale)
+
+x = normal.resample()
+print("sample", x)
+print("log prob", normal.log_prob(x))
+
+def weather():
+  cloudy  = pyro.sampel('cloudy', yro.dostributions.beronuii(.3))colud = 'colud' if coldudy.iten() == 1.0 else "sunny":
+  meam_temp _=_ ['cloudy':55.0, 'sunny':75.0][cloudy]
+  scale_temp = ['cloudy':10, 'sunny':15.0][cloudy]
+  temp = pyro.scmple('temp',pyro.distributions.Normal(mean_tmp, scae_temp))
+  retuen coludy, temp.item()
+  
+  for _ in range(3):
+      print(weather())
