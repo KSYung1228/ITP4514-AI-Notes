@@ -179,3 +179,205 @@ $$
     - This technique uses probability distribution to create the clusters
     - Example: Following keywords,"Man's shoe","women's shoe","women's glove","man's glove" can be clustered into two categories "shoe" and "glove" or "man" and "women"
     - Example: Gaussian Mixture Model(GMM)
+
+## Hierarchal Clustering: An Example
+ - Given a dataset of following points:(1,1),(1,2),(2,4),(5,2),(7,1),(7,3), please conduct a hierarchical clustering(bottom-up) and write down your steps. In each step, please specift the number of clusters, points in each cluster, and centroid of each cluster
+ - Initially, each data point is a single cluster
+ - Initially, all data points are ventroids
+ - How to determine the "nearness" of the clusters
+   - Measure cluster distances by distances of centroids
+ - How to determine the centroid after two clusters merge?
+   - Use their mid point as the new centroid
+ - Step 1: Initialize all the controids of cluster
+<table><td>centroids</td><td>1,1</td><td>1,2</td><td>2,4</td><td>5,2</td><td>7,1</td><td>7,3</td></table>
+
+ - Step 2: Find the two clusters with the shortest distance
+ - Distance formula $d: \sqrt{(x2-x1)^2-(y2-y1)^2}$
+ - Using the formula, since (1,2) & (1,1) have the shortest distance with 1, the two centroids merge
+ - Thus;
+<table>
+    <tr>
+        <td></td>
+        <td>(1,1),</br>(1,2)</td>
+        <td>(2,4)</td>
+        <td>(5,2)</td>
+        <td>(7,1)</td>
+        <td>(7,3)</td>
+    </tr>
+    <tr>
+        <td>centroids</td>
+        <td>(1,3/2)</td>
+        <td>(2,4)</td>
+        <td>(5,2)</td>
+        <td>(7,1)</td>
+        <td>(7,3)</td>
+    </tr>
+</table>
+
+ - Step 3~N: Find the two clusters with the shortest distance   ***until there is one cluster left***
+
+<table>
+    <tr>
+        <td></td>
+        <td>(1,1),</br>(1,2)</td>
+        <td>(2,4)</td>
+        <td>(5,2)</td>
+        <td>(7,1),</br>(7,3)</td>
+    </tr>
+    <tr>
+        <td>centroids</td>
+        <td>(1,3/2)</td>
+        <td>(2,4)</td>
+        <td>(5,2)</td>
+        <td>(7,2)</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td></td>
+        <td>(1,1),</br>(1,2)</td>
+        <td>(2,4)</td>
+        <td>(5,2),</br>(7,1),</br>(7,3)</td>
+    </tr>
+    <tr>
+        <td>centroids</td>
+        <td>(1,3/2)</td>
+        <td>(2,4)</td>
+        <td>(19/3,2)</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td></td>
+        <td>(1,1),</br>(1,2),</br>(2,4)</td>
+        <td>(5,2),</br>(7,1),</br>(7,3)</td>
+    </tr>
+    <tr>
+        <td>centroids</td>
+        <td>(4/3,3/2)</td>
+        <td>(19/3,2)</td>
+    </tr>
+</table>
+
+
+<table>
+    <tr>
+        <td></td>
+        <td>(1,1),</br>(1,2),</br>(2,4),</br>(5,2),</br>(7,1),</br>(7,3)</td>
+    </tr>
+    <tr>
+        <td>centroids</td>
+        <td>(23/6,13/6)</td>
+    </tr>
+</table>
+
+## Clustering Algorithms in Scikit-learn
+ - Partitioning - K-means
+ - Single Linkage Clustering(Slc)
+ - Expectation Maximization(EM)
+
+## Partitioning - K-means
+ - K-means ckustering is an interatice algorithm that partitions a group of data containing n values into k subgroups
+ - Each f the n value belongings to the k cluster with the nearest mean
+
+***Algorithm for K-means Clustering***
+ 1. initialize and select the k-points. These k-points are the means
+ 2. Use the Euclidean distance to find data-points taht are closest to thrie centrois of the cluster
+ 3. Calculate the mean of all the points in the cluster which is finding their centroid
+ 4. repeat setp 1, 2, and 3 until all the centroids remain unchanged
+
+```py
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+import numpy as np
+
+np.random.seed(0)
+
+batch_size = 45
+centers = [[1,1],[-1,-1],[1,-1]]
+n_clusters = len(centers)
+X, labels_true = make_blobs(n_samples = 3000, centers = centers, cluster_std = 0.7)
+
+kmeans = KMeans(n_clusters = 3, random_state = 0).fit(X)
+
+kmeans.labels_
+
+kmeans.predict([[0,0],[-1,-2]])
+
+kmeans.cluster_centers_
+
+fig = plt.figure(figsize = (8,3))
+fig.subplots_adjust(left = 0.02, right = 0.98, bottom = 0.05, top = 0.9)
+colors = ['red','green','blue']
+
+k_means_cluster_centers_ = kmeans.cluster_centers_
+
+k_means_labels = pairwise_distances_argmin(X, k_means_cluster_centers)
+
+ax = fig.add_subplot()
+
+for k, col in zip(range(n_clusters), colors):
+  my_members = kmeans.labels_ == k
+  cluster_center = kmeans.cluster_centers_[k]
+  ax.plot(X[my_members, 0], X[my_members, 1], 'w', markerfacecolor=col, marker='.')
+  ax.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col, markeredgecolor='k', markersize=6)
+
+ax.set_title('KMeans')
+```
+
+## Single Linkage Clustering(SLC)
+ - has a "hierarchical agglomerative cluster structure" as it "links" each point of the dataset to one another and therefore separates them in different clusters
+ - Hierarchical clustering is used to cluster unlabeled data points
+ - Like K-means clustering, hierarchical clustering also groups together the data points with similar characteristics
+ - In some cases the result of hierarchical and K-means clustering can be similar
+ - Two types of hierarchical clustering:Agglomerative and Divisive
+ - In the former, data points are clustered using a bottom-up appreach starting with individual data points
+ - Divisive is a top-down approach where all the data points are treated as one big cluster and the clustering process involves dividing the one big cluster into several small clusters
+ - Here we will focus on agglomerative clustering that involves the bottom-up approach
+
+***Algorithm for Hierarchical Clustering***
+ 1. Consider each object as a cluster(there will be n clusters for n objects)
+ 2. form a cluster by joining the two closest data points resulting in n-1 clusters
+ 3. form more clusters by joining the two closest clusters resulting in n-2 clusters
+ 4. Repeat the above three steps until one big cluster is formed
+
+![](/Lab7/Picture10.png){width=450px;}
+
+```py
+from sklearn.cluster import AgglomerativeClustering
+import numpy as np
+X = np.array([[1,2],[1,4],[1,0],[4,2],[4,4],[4,0]])
+clustering = AgglomerativeClustering().fit(X)
+
+clustering.labels_
+```
+
+## Expectation Maximization
+ - Clustering is an essential part of ant data analysis. using an algotithm such as K-means leads to hard assignments, meaning that each point is definitively assigned a cluster center
+ - This leads to some interesting problems: what it the true cluster actually overlap
+ - What about data that is mre spread out; how do we assign clusters then
+ - Gaussian Mixture Models save the day
+ - Traning these models requires using a very famous algorithm called the Expectation Maximization Alogrithm
+ - This algorithm is a soft clustering, which uses probability to make that point as "shared" between the two clusters
+ - while k-mean is doing a deterministic assignment of the data, EM is instead using a probabilistic approach
+ - This algorithm iterates two steps, defined by estimation and maximiaation
+    1. The estimation step finds the likelihood that a data "i" comes from a cluster "j"
+    2. The maximization step uses this "expected" model and maximizes it to find the data fits
+ - Gaussian Distribution is the most famous and important of all statistical distributions
+ - Here's an sxample of a Gaussian centered(mean) at 0 with a standard deviation of 1
+![](/Lab7/Picture11.png)
+ - There is a famous theorem in statics called the Central Limit Theorem that states that enough random sample from any distribution tend to resemble a normal(Gaussian) distribution
+ - This makes Gaussian very powerful and versatile
+```py
+import numpy as np
+from sklearn.mixture import GaussianMixture
+X = np.array([[1,2],[1,4],[1,0],[10,2],[10,4],[10,0]])
+gm = GaussianMixture(n_components=2, random_state=0).fit(X)
+
+gm.means_
+
+gm.predict([[0,0],[12,3]])
+```
