@@ -135,7 +135,6 @@ image = cv2.imread('images/puppy2.jpg')
 edges = cv2.Canny(image, 100, 200)
 
 # plot the edges
-diaplay_img(edges)
 ```
 ![](/Lab8/Picture7.png)
 
@@ -170,4 +169,4 @@ plt.imshow(result, cmap = 'gray')
 
 ## Models - Detectron2
 
- - "Detectron2 is Facebook AI Research's next generation library that provides state-of-art detection and segmentation algorithms. It is the successot of Detectron and maskrcnn-benchmark, It supports a number of computer vision research projects and production applications in Facrbook."
+ - "Detectron2 is Facebook AI Research's next generation library that provides state-of-art detection and segmentation algorithms. It is the successot of Detectron and maskrcnn-benchmark, It supports a number of computer vision research projects and production applications in Facrbook"
