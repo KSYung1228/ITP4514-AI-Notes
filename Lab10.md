@@ -14,8 +14,8 @@
 ## Terminology
  - Items – entities a system recommends
  - Query – information a system uses to make recommendations
- - User information: uid / browse record
- - Additional Content: time / user’s device
+   - User information: uid / browse record
+   - Additional Content: time / user’s device
  - Embedding – A mapping from a discrete set
 
 ## Recommendation Systems
